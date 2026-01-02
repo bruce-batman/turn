@@ -1,13 +1,26 @@
 {
   "functions": {
     "api/bypass.js": {
-      "maxDuration": 60
+      "maxDuration": 60,
+      "memory": 3008
     }
   },
-  "rewrites": [
+  "routes": [
     {
-      "source": "/api/(.*)",
-      "destination": "/api/bypass"
+      "src": "/api/bypass",
+      "methods": ["GET", "POST"],
+      "dest": "/api/bypass"
+    },
+    {
+      "src": "/",
+      "dest": "/api/bypass"
+    },
+    {
+      "src": "/docs",
+      "dest": "/api/bypass"
     }
-  ]
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  }
 }
